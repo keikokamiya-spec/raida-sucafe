@@ -50,7 +50,7 @@
       "addressCountry": "JP"
     },
     "telephone": "090-7067-2673",
-    "email": "TAMATAMA4357@GMAIL.COM",
+    "email": "tamatama4357@gmail.com",
     "openingHoursSpecification": [
       { "@type": "OpeningHoursSpecification", "dayOfWeek": "Wednesday", "opens": "11:00", "closes": "18:00" },
       { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "11:00", "closes": "18:00" },
@@ -200,8 +200,13 @@
           <p class="section-subtitle">ライダーのお腹を満たす、ボリューム満点の定食メニュー</p>
         </div>
 
-        <div class="menu-grid">
-          <div class="menu-card animate-on-scroll">
+        <div class="menu-slider animate-on-scroll" id="menu-slider" aria-label="メニュースライドショー">
+          <button class="menu-slider-btn menu-slider-btn--prev" type="button" aria-label="前のメニュー画像へ">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="menu-slider-viewport">
+            <div class="menu-grid menu-slider-track">
+          <div class="menu-card">
             <div class="menu-card-img">
               <img src="images/menu/karaage.jpg" alt="唐揚げランチ" loading="lazy">
             </div>
@@ -210,7 +215,7 @@
               <p class="menu-card-desc">サラダ・ライス・スープ・デザート付</p>
             </div>
           </div>
-          <div class="menu-card animate-on-scroll">
+          <div class="menu-card">
             <div class="menu-card-img">
               <img src="images/menu/curry.jpg" alt="カレーランチ" loading="lazy">
             </div>
@@ -219,7 +224,7 @@
               <p class="menu-card-desc">じっくり煮込んだ自慢のカレー</p>
             </div>
           </div>
-          <div class="menu-card animate-on-scroll">
+          <div class="menu-card">
             <div class="menu-card-img">
               <img src="images/menu/hayashi.jpg" alt="ハヤシランチ" loading="lazy">
             </div>
@@ -228,7 +233,7 @@
               <p class="menu-card-desc">サラダ・ライス・スープ・デザート付</p>
             </div>
           </div>
-          <div class="menu-card animate-on-scroll">
+          <div class="menu-card">
             <div class="menu-card-img">
               <img src="images/menu/napolitan.jpg" alt="ナポリタンランチ" loading="lazy">
             </div>
@@ -237,7 +242,7 @@
               <p class="menu-card-desc">昔ながらの喫茶店ナポリタン</p>
             </div>
           </div>
-          <div class="menu-card animate-on-scroll">
+          <div class="menu-card">
             <div class="menu-card-img">
               <img src="images/menu/french-toast.jpg" alt="フレンチトースト" loading="lazy">
             </div>
@@ -246,7 +251,7 @@
               <p class="menu-card-desc">アイス添え・メープルシロップ付</p>
             </div>
           </div>
-          <div class="menu-card animate-on-scroll">
+          <div class="menu-card">
             <div class="menu-card-img">
               <img src="images/menu/waffle.jpg" alt="ベルギーワッフル" loading="lazy">
             </div>
@@ -255,14 +260,74 @@
               <p class="menu-card-desc">サクッとした食感の本格ワッフル</p>
             </div>
           </div>
+          <div class="menu-card">
+            <div class="menu-card-img">
+              <img src="images/menu/yakiniku.jpg" alt="焼肉丼ランチ" loading="lazy">
+            </div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">焼肉丼ランチ</h3>
+              <p class="menu-card-desc">食欲をそそるボリューム丼</p>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-img">
+              <img src="images/menu/saba.jpg" alt="さば or ホッケランチ" loading="lazy">
+            </div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">さば or ホッケランチ</h3>
+              <p class="menu-card-desc">焼き魚を楽しめる和定食</p>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-img">
+              <img src="images/menu/reimen.jpg" alt="盛岡冷麺" loading="lazy">
+            </div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">盛岡冷麺</h3>
+              <p class="menu-card-desc">さっぱり食べられる人気メニュー</p>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-img">
+              <img src="images/menu/tuna-sand.jpg" alt="ツナサンド" loading="lazy">
+            </div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">ツナサンド</h3>
+              <p class="menu-card-desc">軽食にもぴったりの定番サンド</p>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-img">
+              <img src="images/menu/pizza-sand.jpg" alt="ピザサンド" loading="lazy">
+            </div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">ピザサンド</h3>
+              <p class="menu-card-desc">香ばしく焼き上げたホットサンド</p>
+            </div>
+          </div>
+          <div class="menu-card">
+            <div class="menu-card-img">
+              <img src="images/menu/agepan.jpg" alt="揚げパン" loading="lazy">
+            </div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">揚げパン</h3>
+              <p class="menu-card-desc">どこか懐かしい甘い一品</p>
+            </div>
+          </div>
+            </div>
+          </div>
+          <button class="menu-slider-btn menu-slider-btn--next" type="button" aria-label="次のメニュー画像へ">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <div class="menu-slider-dots" aria-label="メニュースライド位置"></div>
         </div>
 
         <div class="menu-extra animate-on-scroll">
-          <p>その他にも、焼肉丼ランチ・さば or ホッケランチ・盛岡冷麺・ツナサンド・ピザサンド・揚げパンなど、多彩なメニューをご用意しています。</p>
+          <p>フードはランチから軽食、デザートまで幅広くご用意しています。</p>
           <div class="menu-drink-info">
-            <span><i class="fas fa-coffee"></i> コーヒー ¥400</span>
-            <span><i class="fas fa-glass-water"></i> ソフトドリンク ¥300</span>
-            <span><i class="fas fa-ice-cream"></i> デザート ¥300</span>
+            <span><i class="fas fa-coffee"></i> コーヒー ¥500</span>
+            <span><i class="fas fa-glass-water"></i> ソフトドリンク ¥400</span>
+            <span><i class="fas fa-ice-cream"></i> デザート ¥500</span>
           </div>
         </div>
       </div>
@@ -328,6 +393,17 @@
               <p class="service-item-desc">手ぶらで来ても愛車の手入れが可能。工具の無料貸し出しに加え、オイル交換など簡単なメンテナンスにも対応します。</p>
             </div>
           </div>
+
+          <div class="service-item service-item--reverse animate-on-scroll">
+            <div class="service-item-img">
+              <img src="images/service/chemical2.jpg" alt="ガラスコーティング" loading="lazy">
+            </div>
+            <div class="service-item-text">
+              <div class="service-item-number">04</div>
+              <h3 class="service-item-title">ガラスコーティング</h3>
+              <p class="service-item-desc">愛車の美しさを長く保つガラスコーティングにも対応。ツヤと保護性能を高め、日々のケアをサポートします。</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -388,55 +464,66 @@
           <div class="section-divider"></div>
         </div>
 
-        <div class="gallery-grid" id="gallery-grid">
-          <div class="gallery-item animate-on-scroll" data-src="images/gallery/gallery-01.jpg">
+        <div class="gallery-slider animate-on-scroll" id="gallery-slider" aria-label="ギャラリースライドショー">
+          <button class="gallery-slider-btn gallery-slider-btn--prev" type="button" aria-label="前のギャラリー画像へ">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="gallery-slider-viewport">
+            <div class="gallery-grid gallery-slider-track" id="gallery-grid">
+          <div class="gallery-item" data-src="images/gallery/gallery-01.jpg">
             <img src="images/gallery/gallery-01.jpg" alt="ギャラリー" loading="lazy">
             <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
           </div>
-          <div class="gallery-item gallery-item--tall animate-on-scroll" data-src="images/gallery/gallery-02.jpg">
+          <div class="gallery-item gallery-item--tall" data-src="images/gallery/gallery-02.jpg">
             <img src="images/gallery/gallery-02.jpg" alt="ギャラリー" loading="lazy">
             <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
           </div>
-          <div class="gallery-item animate-on-scroll" data-src="images/gallery/gallery-03.jpg">
+          <div class="gallery-item" data-src="images/gallery/gallery-03.jpg">
             <img src="images/gallery/gallery-03.jpg" alt="ギャラリー" loading="lazy">
             <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
           </div>
-          <div class="gallery-item animate-on-scroll" data-src="images/gallery/gallery-04.jpg">
+          <div class="gallery-item" data-src="images/gallery/gallery-04.jpg">
             <img src="images/gallery/gallery-04.jpg" alt="ギャラリー" loading="lazy">
             <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
           </div>
-          <div class="gallery-item gallery-item--wide animate-on-scroll" data-src="images/gallery/gallery-05.jpg">
+          <div class="gallery-item gallery-item--wide" data-src="images/gallery/gallery-05.jpg">
             <img src="images/gallery/gallery-05.jpg" alt="ギャラリー" loading="lazy">
             <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
           </div>
-          <div class="gallery-item animate-on-scroll" data-src="images/gallery/gallery-06.jpg">
+          <div class="gallery-item" data-src="images/gallery/gallery-06.jpg">
             <img src="images/gallery/gallery-06.jpg" alt="ギャラリー" loading="lazy">
             <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
           </div>
-          <div class="gallery-item animate-on-scroll" data-src="images/gallery/gallery-07.jpg">
+          <div class="gallery-item" data-src="images/gallery/gallery-07.jpg">
             <img src="images/gallery/gallery-07.jpg" alt="ギャラリー" loading="lazy">
             <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
           </div>
-          <div class="gallery-item gallery-item--tall animate-on-scroll" data-src="images/gallery/gallery-08.jpg">
+          <div class="gallery-item gallery-item--tall" data-src="images/gallery/gallery-08.jpg">
             <img src="images/gallery/gallery-08.jpg" alt="ギャラリー" loading="lazy">
             <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
           </div>
-          <div class="gallery-item animate-on-scroll" data-src="images/gallery/gallery-09.jpg">
+          <div class="gallery-item" data-src="images/gallery/gallery-09.jpg">
             <img src="images/gallery/gallery-09.jpg" alt="ギャラリー" loading="lazy">
             <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
           </div>
-          <div class="gallery-item animate-on-scroll" data-src="images/gallery/gallery-10.jpg">
+          <div class="gallery-item" data-src="images/gallery/gallery-10.jpg">
             <img src="images/gallery/gallery-10.jpg" alt="ギャラリー" loading="lazy">
             <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
           </div>
-          <div class="gallery-item gallery-item--wide animate-on-scroll" data-src="images/gallery/gallery-11.jpg">
+          <div class="gallery-item gallery-item--wide" data-src="images/gallery/gallery-11.jpg">
             <img src="images/gallery/gallery-11.jpg" alt="ギャラリー" loading="lazy">
             <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
           </div>
-          <div class="gallery-item animate-on-scroll" data-src="images/gallery/gallery-12.jpg">
+          <div class="gallery-item" data-src="images/gallery/gallery-12.jpg">
             <img src="images/gallery/gallery-12.jpg" alt="ギャラリー" loading="lazy">
             <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
           </div>
+            </div>
+          </div>
+          <button class="gallery-slider-btn gallery-slider-btn--next" type="button" aria-label="次のギャラリー画像へ">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <div class="gallery-slider-dots" aria-label="ギャラリースライド位置"></div>
         </div>
       </div>
 
@@ -475,11 +562,11 @@
                 <dt>店名</dt>
                 <dd>ライダースカフェ＆ダイナー 玉の風</dd>
                 <dt>住所</dt>
-                <dd>〒223-0065 神奈川県横浜市港北区高田東４丁目１１−１６ たかな橋荘 102</dd>
+                <dd>〒223-0065 神奈川県横浜市港北区高田東４丁目１１−１６</dd>
                 <dt>電話</dt>
                 <dd><a href="tel:09070672673" class="info-link">090-7067-2673</a></dd>
                 <dt>メール</dt>
-                <dd><a href="mailto:TAMATAMA4357@GMAIL.COM" class="info-link">TAMATAMA4357@GMAIL.COM</a></dd>
+                <dd><a href="mailto:tamatama4357@gmail.com" class="info-link">tamatama4357@gmail.com</a></dd>
               </dl>
             </div>
 
@@ -540,8 +627,9 @@
             </div>
 
             <div class="info-block info-block--note">
-              <p><i class="fas fa-smoking"></i> 全席喫煙可（紙・加熱式OK）</p>
-              <p><i class="fas fa-chair"></i> カウンター席中心 計8席</p>
+              <p><i class="fas fa-ban-smoking"></i> 店内禁煙・喫煙スペース有り</p>
+              <p><i class="fas fa-chair"></i> 席数 12席</p>
+              <p><i class="fas fa-square-parking"></i> バイク駐車場 約8台〜10台可能</p>
             </div>
           </div>
         </div>
@@ -557,7 +645,7 @@
         <div class="footer-brand">
           <span class="footer-logo-en">RIDER'S CAFE & DINER</span>
           <span class="footer-logo-jp">玉の風</span>
-          <p class="footer-address">〒223-0065 神奈川県横浜市港北区高田東４丁目１１−１６ たかな橋荘 102</p>
+          <p class="footer-address">〒223-0065 神奈川県横浜市港北区高田東４丁目１１−１６</p>
           <p class="footer-tel"><a href="tel:09070672673">TEL 090-7067-2673</a></p>
         </div>
         <div class="footer-sns">

@@ -108,6 +108,137 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ---------- Menu slideshow ----------
+  const menuSlider = document.getElementById('menu-slider');
+
+  if (menuSlider) {
+    const menuTrack = menuSlider.querySelector('.menu-slider-track');
+    const menuSlides = Array.from(menuSlider.querySelectorAll('.menu-card'));
+    const menuPrev = menuSlider.querySelector('.menu-slider-btn--prev');
+    const menuNext = menuSlider.querySelector('.menu-slider-btn--next');
+    const menuDots = menuSlider.querySelector('.menu-slider-dots');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let menuCurrentIndex = 0;
+    let menuAutoplay = null;
+    let menuTouchStartX = 0;
+
+    const getMenuSlidesPerView = () => {
+      if (window.innerWidth <= 767) return 1;
+      if (window.innerWidth <= 1024) return 2;
+      return 3;
+    };
+
+    const getMenuMaxIndex = () => Math.max(menuSlides.length - getMenuSlidesPerView(), 0);
+
+    const renderMenuDots = () => {
+      const dotCount = getMenuMaxIndex() + 1;
+      menuDots.innerHTML = '';
+
+      for (let i = 0; i < dotCount; i++) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'menu-slider-dot';
+        dot.setAttribute('aria-label', `${i + 1}番目のメニュー画像へ`);
+        dot.addEventListener('click', () => {
+          menuCurrentIndex = i;
+          updateMenuSlider();
+          restartMenuAutoplay();
+        });
+        menuDots.appendChild(dot);
+      }
+    };
+
+    const updateMenuSlider = () => {
+      const maxIndex = getMenuMaxIndex();
+      menuCurrentIndex = Math.min(Math.max(menuCurrentIndex, 0), maxIndex);
+
+      const slideWidth = menuSlides[0].getBoundingClientRect().width;
+      const gap = parseFloat(window.getComputedStyle(menuTrack).gap) || 0;
+      menuTrack.style.transform = `translateX(-${menuCurrentIndex * (slideWidth + gap)}px)`;
+
+      menuDots.querySelectorAll('.menu-slider-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === menuCurrentIndex);
+      });
+    };
+
+    const showNextMenuSlide = () => {
+      const maxIndex = getMenuMaxIndex();
+      menuCurrentIndex = menuCurrentIndex >= maxIndex ? 0 : menuCurrentIndex + 1;
+      updateMenuSlider();
+    };
+
+    const showPrevMenuSlide = () => {
+      const maxIndex = getMenuMaxIndex();
+      menuCurrentIndex = menuCurrentIndex <= 0 ? maxIndex : menuCurrentIndex - 1;
+      updateMenuSlider();
+    };
+
+    const stopMenuAutoplay = () => {
+      if (menuAutoplay) {
+        clearInterval(menuAutoplay);
+        menuAutoplay = null;
+      }
+    };
+
+    const startMenuAutoplay = () => {
+      if (prefersReducedMotion) return;
+      stopMenuAutoplay();
+      menuAutoplay = setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          showNextMenuSlide();
+        }
+      }, 3500);
+    };
+
+    const restartMenuAutoplay = () => {
+      stopMenuAutoplay();
+      startMenuAutoplay();
+    };
+
+    menuPrev.addEventListener('click', () => {
+      showPrevMenuSlide();
+      restartMenuAutoplay();
+    });
+
+    menuNext.addEventListener('click', () => {
+      showNextMenuSlide();
+      restartMenuAutoplay();
+    });
+
+    menuSlider.addEventListener('mouseenter', stopMenuAutoplay);
+    menuSlider.addEventListener('mouseleave', startMenuAutoplay);
+    menuSlider.addEventListener('focusin', stopMenuAutoplay);
+    menuSlider.addEventListener('focusout', startMenuAutoplay);
+
+    menuSlider.addEventListener('touchstart', (e) => {
+      menuTouchStartX = e.changedTouches[0].screenX;
+      stopMenuAutoplay();
+    }, { passive: true });
+
+    menuSlider.addEventListener('touchend', (e) => {
+      const diff = menuTouchStartX - e.changedTouches[0].screenX;
+
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          showNextMenuSlide();
+        } else {
+          showPrevMenuSlide();
+        }
+      }
+      startMenuAutoplay();
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      renderMenuDots();
+      updateMenuSlider();
+    });
+
+    renderMenuDots();
+    updateMenuSlider();
+    startMenuAutoplay();
+  }
+
   // ---------- Scroll animations (Intersection Observer) ----------
   const animateElements = document.querySelectorAll('.animate-on-scroll, .fade-in');
 
@@ -184,13 +315,146 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, 600);
 
+  // ---------- Gallery slideshow ----------
+  const gallerySlider = document.getElementById('gallery-slider');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  let startGalleryAutoplay = () => {};
+  let stopGalleryAutoplay = () => {};
+
+  if (gallerySlider) {
+    const galleryTrack = gallerySlider.querySelector('.gallery-slider-track');
+    const gallerySlides = Array.from(galleryItems);
+    const galleryPrevBtn = gallerySlider.querySelector('.gallery-slider-btn--prev');
+    const galleryNextBtn = gallerySlider.querySelector('.gallery-slider-btn--next');
+    const galleryDots = gallerySlider.querySelector('.gallery-slider-dots');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let galleryCurrentIndex = 0;
+    let galleryAutoplay = null;
+    let galleryTouchStartX = 0;
+
+    const getGallerySlidesPerView = () => {
+      if (window.innerWidth <= 767) return 1;
+      if (window.innerWidth <= 1024) return 2;
+      return 3;
+    };
+
+    const getGalleryMaxIndex = () => Math.max(gallerySlides.length - getGallerySlidesPerView(), 0);
+
+    const renderGalleryDots = () => {
+      const dotCount = getGalleryMaxIndex() + 1;
+      galleryDots.innerHTML = '';
+
+      for (let i = 0; i < dotCount; i++) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'gallery-slider-dot';
+        dot.setAttribute('aria-label', `${i + 1}番目のギャラリー画像へ`);
+        dot.addEventListener('click', () => {
+          galleryCurrentIndex = i;
+          updateGallerySlider();
+          restartGalleryAutoplay();
+        });
+        galleryDots.appendChild(dot);
+      }
+    };
+
+    const updateGallerySlider = () => {
+      const maxIndex = getGalleryMaxIndex();
+      galleryCurrentIndex = Math.min(Math.max(galleryCurrentIndex, 0), maxIndex);
+
+      const slideWidth = gallerySlides[0].getBoundingClientRect().width;
+      const gap = parseFloat(window.getComputedStyle(galleryTrack).gap) || 0;
+      galleryTrack.style.transform = `translateX(-${galleryCurrentIndex * (slideWidth + gap)}px)`;
+
+      galleryDots.querySelectorAll('.gallery-slider-dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === galleryCurrentIndex);
+      });
+    };
+
+    const showNextGallerySlide = () => {
+      const maxIndex = getGalleryMaxIndex();
+      galleryCurrentIndex = galleryCurrentIndex >= maxIndex ? 0 : galleryCurrentIndex + 1;
+      updateGallerySlider();
+    };
+
+    const showPrevGallerySlide = () => {
+      const maxIndex = getGalleryMaxIndex();
+      galleryCurrentIndex = galleryCurrentIndex <= 0 ? maxIndex : galleryCurrentIndex - 1;
+      updateGallerySlider();
+    };
+
+    stopGalleryAutoplay = () => {
+      if (galleryAutoplay) {
+        clearInterval(galleryAutoplay);
+        galleryAutoplay = null;
+      }
+    };
+
+    startGalleryAutoplay = () => {
+      if (prefersReducedMotion) return;
+      stopGalleryAutoplay();
+      galleryAutoplay = setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          showNextGallerySlide();
+        }
+      }, 4000);
+    };
+
+    const restartGalleryAutoplay = () => {
+      stopGalleryAutoplay();
+      startGalleryAutoplay();
+    };
+
+    galleryPrevBtn.addEventListener('click', () => {
+      showPrevGallerySlide();
+      restartGalleryAutoplay();
+    });
+
+    galleryNextBtn.addEventListener('click', () => {
+      showNextGallerySlide();
+      restartGalleryAutoplay();
+    });
+
+    gallerySlider.addEventListener('mouseenter', stopGalleryAutoplay);
+    gallerySlider.addEventListener('mouseleave', startGalleryAutoplay);
+    gallerySlider.addEventListener('focusin', stopGalleryAutoplay);
+    gallerySlider.addEventListener('focusout', startGalleryAutoplay);
+
+    gallerySlider.addEventListener('touchstart', (e) => {
+      galleryTouchStartX = e.changedTouches[0].screenX;
+      stopGalleryAutoplay();
+    }, { passive: true });
+
+    gallerySlider.addEventListener('touchend', (e) => {
+      const diff = galleryTouchStartX - e.changedTouches[0].screenX;
+
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          showNextGallerySlide();
+        } else {
+          showPrevGallerySlide();
+        }
+      }
+      startGalleryAutoplay();
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      renderGalleryDots();
+      updateGallerySlider();
+    });
+
+    renderGalleryDots();
+    updateGallerySlider();
+    startGalleryAutoplay();
+  }
+
   // ---------- Gallery Lightbox ----------
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxClose = document.getElementById('lightbox-close');
   const lightboxPrev = document.getElementById('lightbox-prev');
   const lightboxNext = document.getElementById('lightbox-next');
-  const galleryItems = document.querySelectorAll('.gallery-item');
 
   let currentIndex = 0;
   const gallerySources = [];
@@ -206,6 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const openLightbox = (src) => {
+    stopGalleryAutoplay();
     lightboxImg.src = src;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -217,6 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       lightboxImg.src = '';
     }, 400);
+    startGalleryAutoplay();
   };
 
   const showPrevImage = () => {
