@@ -1092,6 +1092,87 @@ ul {
   transform: translateY(-2px);
 }
 
+.partner-shops {
+  margin-top: 56px;
+  padding: 32px;
+  border: 1px dashed var(--color-border-light);
+  border-radius: 4px;
+}
+
+.partner-shops-label {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.partner-shops-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.partner-shop-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  min-height: 96px;
+  padding: 22px 24px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: border-color var(--transition-base),
+              transform var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.partner-shop-card:hover,
+.partner-shop-card:focus-visible {
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-glow);
+}
+
+.partner-shop-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(232, 101, 43, 0.12);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.partner-shop-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.partner-shop-name {
+  font-family: var(--font-jp);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.partner-shop-link {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  letter-spacing: 1px;
+}
+
+.partner-shop-arrow {
+  color: var(--color-accent);
+  font-size: 14px;
+}
+
 /* ============================================
    GALLERY
    ============================================ */
@@ -1803,6 +1884,19 @@ ul {
 
   .event-card-body {
     padding: 20px 24px;
+  }
+
+  .partner-shops {
+    padding: 24px 20px;
+  }
+
+  .partner-shops-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .partner-shop-card {
+    min-height: 88px;
+    padding: 18px 20px;
   }
 
   /* Gallery */
