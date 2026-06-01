@@ -137,6 +137,10 @@ ul {
   height: 64px;
 }
 
+.header.menu-open {
+  z-index: 1200;
+}
+
 .header-inner {
   max-width: var(--container-width);
   margin: 0 auto;
@@ -234,23 +238,23 @@ ul {
   background: var(--color-text-primary);
   position: absolute;
   left: 0;
+  top: 50%;
+  transform-origin: center;
   transition: transform var(--transition-base), opacity var(--transition-base);
 }
 
-.menu-trigger span:nth-child(1) { top: 0; }
-.menu-trigger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
-.menu-trigger span:nth-child(3) { bottom: 0; }
+.menu-trigger span:nth-child(1) { transform: translateY(-11px); }
+.menu-trigger span:nth-child(2) { transform: translateY(-50%); }
+.menu-trigger span:nth-child(3) { transform: translateY(9px); }
 
 .menu-trigger.active span:nth-child(1) {
-  top: 50%;
   transform: translateY(-50%) rotate(45deg);
 }
 .menu-trigger.active span:nth-child(2) {
   opacity: 0;
 }
 .menu-trigger.active span:nth-child(3) {
-  bottom: 50%;
-  transform: translateY(50%) rotate(-45deg);
+  transform: translateY(-50%) rotate(-45deg);
 }
 
 /* Mobile Modal */
@@ -1621,6 +1625,17 @@ a.partner-shop-icon:focus-visible {
   font-size: 18px;
 }
 
+.info-title--hours {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.info-title--hours > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .info-list {
   display: grid;
   grid-template-columns: 60px 1fr;
@@ -1682,10 +1697,43 @@ a.partner-shop-icon:focus-visible {
 }
 
 .hours-note {
-  display: inline-block;
+  display: block;
   font-size: 11px;
   color: var(--color-text-muted);
-  margin-left: 8px;
+  margin-top: 4px;
+}
+
+.hours-sns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  letter-spacing: 1px;
+}
+
+.hours-sns a {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(232, 101, 43, 0.12);
+  color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background var(--transition-base),
+              color var(--transition-base),
+              transform var(--transition-base);
+}
+
+.hours-sns a:hover,
+.hours-sns a:focus-visible {
+  background: var(--color-accent);
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 /* Access routes */
@@ -2160,6 +2208,15 @@ a.partner-shop-icon:focus-visible {
   .info-list {
     grid-template-columns: 55px 1fr;
     font-size: 13px;
+  }
+
+  .info-title--hours {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .hours-sns {
+    margin-left: 0;
   }
 
   /* Footer */

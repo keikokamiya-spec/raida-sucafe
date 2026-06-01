@@ -51,14 +51,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalLinks = document.querySelectorAll('.modal-nav-link');
 
   const openMenu = () => {
+    header.classList.add('menu-open');
     menuTrigger.classList.add('active');
+    menuTrigger.setAttribute('aria-label', 'メニューを閉じる');
     modalWindow.classList.add('open');
     mask.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
 
   const closeMenu = () => {
+    header.classList.remove('menu-open');
     menuTrigger.classList.remove('active');
+    menuTrigger.setAttribute('aria-label', 'メニューを開く');
     modalWindow.classList.remove('open');
     mask.classList.remove('active');
     document.body.style.overflow = '';
