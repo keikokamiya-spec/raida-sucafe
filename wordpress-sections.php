@@ -15,7 +15,7 @@ $service_06 = array(
     'service_06_description',
     '月ごとにおすすめのサービスをご用意しています。内容は季節に合わせて変わるため、ご来店時にお気軽にご確認ください。'
   ),
-  'image' => get_theme_mod('service_06_image', get_template_directory_uri() . '/images/06.png'),
+  'image' => get_theme_mod('service_06_image', get_template_directory_uri() . '/images/06.jpg'),
 );
 ?>
 
