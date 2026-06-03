@@ -322,7 +322,10 @@ $page_id = get_the_ID();
           get_template_directory_uri() . '/assets/images/06.jpg'
         );
 
-        ?>
+        echo '<!-- service_image_url: ' . esc_url($service_image_url) . ' -->'; ?>
+        <div style="color:red; font-size:40px; background:white; padding:20px; z-index:9999; position:relative;">
+          TEST反映確認
+        </div>
         <div class="service-item service-item--reverse animate-on-scroll">
           <div class="service-item-img service-item-img--fit">
             <img src="<?php echo esc_url($service_image_url); ?>" alt="<?php echo esc_attr($service_title); ?>"
