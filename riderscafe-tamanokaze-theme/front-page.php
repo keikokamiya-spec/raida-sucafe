@@ -312,20 +312,21 @@ $page_id = get_the_ID();
           '今月のサービス'
         );
         $service_text = riders_get_acf_value(
-          array('service_text', 'service_06_text', 'service_06_description'),
+          array('service_class_description', 'service_text', 'service_06_text', 'service_06_description'),
           $page_id,
           '月ごとにおすすめのサービスをご用意しています。内容は季節に合わせて変わるため、ご来店時にお気軽にご確認ください。'
         );
-        $service_image_url = riders_get_acf_image_url(
-          array('service_image', 'service_06_image'),
+        $service_image = riders_get_acf_image_data(
+          array('service_class_image', 'service_image', 'service_06_image'),
           $page_id,
-          get_template_directory_uri() . '/assets/images/hitokuchi-shot-ice-hot.jpg'
+          get_template_directory_uri() . '/assets/images/hitokuchi-shot-ice-hot.jpg',
+          $service_title
         );
 
         ?>
         <div class="service-item service-item--reverse animate-on-scroll">
           <div class="service-item-img service-item-img--fit service-item-img--poster">
-            <img src="<?php echo esc_url($service_image_url); ?>" alt="<?php echo esc_attr($service_title); ?>"
+            <img src="<?php echo esc_url($service_image['url']); ?>" alt="<?php echo esc_attr($service_image['alt']); ?>"
               loading="lazy">
           </div>
           <div class="service-item-text">
@@ -353,17 +354,19 @@ $page_id = get_the_ID();
       </div>
 
       <?php
+      $camp_event_title = riders_get_acf_value(array('camp_event_title', 'campevent_title'), $page_id, 'キャンプイベント');
+      $touring_event_title = riders_get_acf_value(array('touring_event_title', 'touringevent_title'), $page_id, 'ツーリングイベント');
       $ride_events = array(
         array(
-          'image' => riders_get_acf_image_url(
-            array('camp_event_image', 'campevent_image'),
+          'image' => riders_get_acf_image_data(
+            array('event_image_1', 'camp_event_image', 'campevent_image'),
             $page_id,
-            get_template_directory_uri() . '/assets/images/event/camp.jpg'
+            get_template_directory_uri() . '/assets/images/event/camp.jpg',
+            $camp_event_title
           ),
-          'alt' => riders_get_acf_value(array('camp_event_title', 'campevent_title'), $page_id, 'キャンプイベント'),
           'icon' => 'fas fa-campground',
           'tag' => riders_get_acf_value(array('camp_event_tag', 'campevent_tag'), $page_id, '毎年9月開催'),
-          'title' => riders_get_acf_value(array('camp_event_title', 'campevent_title'), $page_id, 'キャンプイベント'),
+          'title' => $camp_event_title,
           'text' => riders_get_acf_value(
             array('camp_event_text', 'campevent_text'),
             $page_id,
@@ -371,15 +374,15 @@ $page_id = get_the_ID();
           ),
         ),
         array(
-          'image' => riders_get_acf_image_url(
-            array('touring_event_image', 'touringevent_image'),
+          'image' => riders_get_acf_image_data(
+            array('event_image_2', 'touring_event_image', 'touringevent_image'),
             $page_id,
-            get_template_directory_uri() . '/assets/images/event/bbq.jpg'
+            get_template_directory_uri() . '/assets/images/event/bbq.jpg',
+            $touring_event_title
           ),
-          'alt' => riders_get_acf_value(array('touring_event_title', 'touringevent_title'), $page_id, 'ツーリングイベント'),
           'icon' => 'fas fa-road',
           'tag' => riders_get_acf_value(array('touring_event_tag', 'touringevent_tag'), $page_id, '定期開催'),
-          'title' => riders_get_acf_value(array('touring_event_title', 'touringevent_title'), $page_id, 'ツーリングイベント'),
+          'title' => $touring_event_title,
           'text' => riders_get_acf_value(
             array('touring_event_text', 'touringevent_text'),
             $page_id,
@@ -392,7 +395,7 @@ $page_id = get_the_ID();
         <?php foreach ($ride_events as $event): ?>
           <div class="event-card animate-on-scroll">
             <div class="event-card-img">
-              <img src="<?php echo esc_url($event['image']); ?>" alt="<?php echo esc_attr($event['alt']); ?>"
+              <img src="<?php echo esc_url($event['image']['url']); ?>" alt="<?php echo esc_attr($event['image']['alt']); ?>"
                 loading="lazy">
             </div>
             <div class="event-card-body">

@@ -14,7 +14,7 @@ function riders_register_acf_front_page_fields() {
 
   acf_add_local_field_group(array(
     'key' => 'group_riders_front_page_fields',
-    'title' => 'トップページ編集項目',
+    'title' => 'トップページ設定',
     'fields' => array(
       array(
         'key' => 'field_riders_service_tab',
@@ -30,8 +30,25 @@ function riders_register_acf_front_page_fields() {
         'type' => 'text',
       ),
       array(
+        'key' => 'field_riders_service_class_description',
+        'label' => '今月のサービスクラス 説明文',
+        'name' => 'service_class_description',
+        'type' => 'textarea',
+        'rows' => 4,
+        'new_lines' => '',
+      ),
+      array(
+        'key' => 'field_riders_service_class_image',
+        'label' => '今月のサービスクラス 画像',
+        'name' => 'service_class_image',
+        'type' => 'image',
+        'return_format' => 'array',
+        'preview_size' => 'medium',
+        'library' => 'all',
+      ),
+      array(
         'key' => 'field_riders_service_text',
-        'label' => 'サービス本文',
+        'label' => 'サービス本文（旧フィールド）',
         'name' => 'service_text',
         'type' => 'textarea',
         'rows' => 4,
@@ -39,7 +56,7 @@ function riders_register_acf_front_page_fields() {
       ),
       array(
         'key' => 'field_riders_service_image',
-        'label' => 'サービス画像',
+        'label' => 'サービス画像（旧フィールド）',
         'name' => 'service_image',
         'type' => 'image',
         'return_format' => 'array',
@@ -52,6 +69,24 @@ function riders_register_acf_front_page_fields() {
         'name' => '',
         'type' => 'tab',
         'placement' => 'top',
+      ),
+      array(
+        'key' => 'field_riders_event_image_1',
+        'label' => 'イベント画像 1',
+        'name' => 'event_image_1',
+        'type' => 'image',
+        'return_format' => 'array',
+        'preview_size' => 'medium',
+        'library' => 'all',
+      ),
+      array(
+        'key' => 'field_riders_event_image_2',
+        'label' => 'イベント画像 2',
+        'name' => 'event_image_2',
+        'type' => 'image',
+        'return_format' => 'array',
+        'preview_size' => 'medium',
+        'library' => 'all',
       ),
       array(
         'key' => 'field_riders_camp_event_tag',

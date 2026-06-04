@@ -122,3 +122,53 @@ function riders_get_acf_image_url($field_name, $page_id, $default_url = '') {
 
   return $default_url;
 }
+
+function riders_get_acf_image_data($field_name, $page_id, $default_url = '', $default_alt = '') {
+  $image_data = array(
+    'url' => $default_url,
+    'alt' => $default_alt,
+  );
+
+  if (!function_exists('get_field')) {
+    return $image_data;
+  }
+
+  $image = riders_get_acf_value($field_name, $page_id);
+
+  if (empty($image)) {
+    return $image_data;
+  }
+
+  if (is_array($image)) {
+    if (!empty($image['url'])) {
+      $image_data['url'] = $image['url'];
+    }
+
+    if (!empty($image['alt'])) {
+      $image_data['alt'] = $image['alt'];
+    }
+
+    return $image_data;
+  }
+
+  if (is_numeric($image)) {
+    $url = wp_get_attachment_image_url((int) $image, 'full');
+    $alt = get_post_meta((int) $image, '_wp_attachment_image_alt', true);
+
+    if ($url) {
+      $image_data['url'] = $url;
+    }
+
+    if ($alt) {
+      $image_data['alt'] = $alt;
+    }
+
+    return $image_data;
+  }
+
+  if (is_string($image)) {
+    $image_data['url'] = $image;
+  }
+
+  return $image_data;
+}
