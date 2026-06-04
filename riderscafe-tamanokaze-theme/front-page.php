@@ -280,8 +280,8 @@ $page_id = get_the_ID();
         </div>
 
         <div class="service-item service-item--reverse animate-on-scroll">
-          <div class="service-item-img service-item-img--fit">
-            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/04.jpg" alt="ガラスコーティング"
+          <div class="service-item-img service-item-img--fit service-item-img--square">
+            <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/super-rich-quattro-coating.png" alt="Super Rich Quattro Coating"
               loading="lazy">
           </div>
           <div class="service-item-text">
@@ -319,12 +319,12 @@ $page_id = get_the_ID();
         $service_image_url = riders_get_acf_image_url(
           array('service_image', 'service_06_image'),
           $page_id,
-          get_template_directory_uri() . '/assets/images/06.jpg'
+          get_template_directory_uri() . '/assets/images/hitokuchi-shot-ice-hot.jpg'
         );
 
         ?>
         <div class="service-item service-item--reverse animate-on-scroll">
-          <div class="service-item-img service-item-img--fit">
+          <div class="service-item-img service-item-img--fit service-item-img--poster">
             <img src="<?php echo esc_url($service_image_url); ?>" alt="<?php echo esc_attr($service_title); ?>"
               loading="lazy">
           </div>
@@ -479,8 +479,8 @@ $page_id = get_the_ID();
         <div class="gallery-slider-viewport">
           <div class="gallery-grid gallery-slider-track" id="gallery-grid">
             <div class="gallery-item gallery-item--tall"
-              data-src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/preview (5).jpeg">
-              <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/preview (5).jpeg" alt="ギャラリー"
+              data-src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/scenes-main-interior.jpg">
+              <img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/scenes-main-interior.jpg" alt="店内のシーン"
                 loading="lazy">
               <div class="gallery-overlay"><i class="fas fa-expand"></i></div>
             </div>

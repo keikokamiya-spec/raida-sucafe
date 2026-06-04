@@ -991,11 +991,21 @@ ul {
 }
 
 .service-item-img--fit img {
-  object-fit: fill;
+  object-fit: contain;
 }
 
 .service-item-img--fit:hover img {
   transform: none;
+}
+
+.service-item-img--square {
+  aspect-ratio: 1 / 1;
+}
+
+.service-item-img--poster {
+  aspect-ratio: 506 / 662;
+  justify-self: center;
+  max-width: min(100%, 420px);
 }
 
 .maint-img {
@@ -1235,9 +1245,12 @@ ul {
 }
 
 .partner-shop-card--tamanoya {
+  background-image:
+    linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.58)),
+    url("../images/preview.jpeg");
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  animation: tamanoyaBg 20s steps(1, end) infinite;
 }
 
 .partner-shop-card--single .partner-shop-content {
@@ -1257,39 +1270,11 @@ ul {
   background-size: cover;
 }
 
-@keyframes tamanoyaBg {
-  0%,
-  24.99% {
-    background-image:
-      linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.58)),
-      url("../images/preview (3).jpeg");
-  }
-  25%,
-  49.99% {
+@media (prefers-reduced-motion: reduce) {
+  .partner-shop-card--tamanoya {
     background-image:
       linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.58)),
       url("../images/preview.jpeg");
-  }
-  50%,
-  74.99% {
-    background-image:
-      linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.58)),
-      url("../images/preview (2).jpeg");
-  }
-  75%,
-  100% {
-    background-image:
-      linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.58)),
-      url("../images/preview (1).jpeg");
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .partner-shop-card--tamanoya {
-    animation: none;
-    background-image:
-      linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.58)),
-      url("../images/preview (3).jpeg");
   }
 }
 
