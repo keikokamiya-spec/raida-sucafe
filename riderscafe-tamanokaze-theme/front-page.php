@@ -354,63 +354,52 @@ $page_id = get_the_ID();
       </div>
 
       <?php
-      $camp_event_title = riders_get_acf_value(array('camp_event_title', 'campevent_title'), $page_id, 'キャンプイベント');
-      $touring_event_title = riders_get_acf_value(array('touring_event_title', 'touringevent_title'), $page_id, 'ツーリングイベント');
-      $ride_events = array(
-        array(
-          'image' => riders_get_acf_image_data(
-            array('event_image_1', 'camp_event_image', 'campevent_image'),
-            $page_id,
-            get_template_directory_uri() . '/assets/images/event/camp.jpg',
-            $camp_event_title
-          ),
-          'icon' => 'fas fa-campground',
-          'tag' => riders_get_acf_value(array('camp_event_tag', 'campevent_tag'), $page_id, '毎年9月開催'),
-          'title' => $camp_event_title,
-          'text' => riders_get_acf_value(
-            array('camp_event_text', 'campevent_text'),
-            $page_id,
-            '玉の風の一大イベント。全国からライダーが集結し、焚き火を囲んでバイク談義に花を咲かせます。参加確認・集客はInstagramで随時発信中。'
-          ),
-        ),
-        array(
-          'image' => riders_get_acf_image_data(
-            array('event_image_2', 'touring_event_image', 'touringevent_image'),
-            $page_id,
-            get_template_directory_uri() . '/assets/images/event/bbq.jpg',
-            $touring_event_title
-          ),
-          'icon' => 'fas fa-road',
-          'tag' => riders_get_acf_value(array('touring_event_tag', 'touringevent_tag'), $page_id, '定期開催'),
-          'title' => $touring_event_title,
-          'text' => riders_get_acf_value(
-            array('touring_event_text', 'touringevent_text'),
-            $page_id,
-            '季節ごとに開催されるツーリングイベント。玉の風に集合して、仲間と一緒に走りに出かけましょう。初心者からベテランまで大歓迎。'
-          ),
-        ),
+      $camp_event_image = riders_get_acf_image_data(
+        array('event_image_1', 'camp_event_image', 'campevent_image'),
+        $page_id,
+        get_template_directory_uri() . '/assets/images/event/camp.jpg',
+        'キャンプイベント'
+      );
+      $touring_event_image = riders_get_acf_image_data(
+        array('event_image_2', 'touring_event_image', 'touringevent_image'),
+        $page_id,
+        get_template_directory_uri() . '/assets/images/event/bbq.jpg',
+        'ツーリングイベント'
+      );
+      $camp_event_text = riders_get_acf_value(
+        array('event_text_1', 'camp_event_text', 'event_1_text'),
+        $page_id,
+        '玉の風の一大イベント。全国からライダーが集結し、焚き火を囲んでバイク談義に花を咲かせます。参加確認・集客はInstagramで随時発信中。'
+      );
+      $touring_event_text = riders_get_acf_value(
+        array('event_text_2', 'touring_event_text', 'event_2_text'),
+        $page_id,
+        '季節ごとに開催されるツーリングイベント。玉の風に集合して、仲間と一緒に走りに出かけましょう。初心者からベテランまで大歓迎。'
       );
       ?>
       <div class="event-grid">
-        <?php foreach ($ride_events as $event): ?>
-          <div class="event-card animate-on-scroll">
-            <div class="event-card-img">
-              <img src="<?php echo esc_url($event['image']['url']); ?>" alt="<?php echo esc_attr($event['image']['alt']); ?>"
-                loading="lazy">
-            </div>
-            <div class="event-card-body">
-              <span class="event-card-tag"><i class="<?php echo esc_attr($event['icon']); ?>"></i>
-                <?php echo esc_html($event['tag']); ?>
-              </span>
-              <h3 class="event-card-title">
-                <?php echo esc_html($event['title']); ?>
-              </h3>
-              <p class="event-card-text">
-                <?php echo nl2br(esc_html($event['text'])); ?>
-              </p>
-            </div>
+        <div class="event-card animate-on-scroll">
+          <div class="event-card-img">
+            <img src="<?php echo esc_url($camp_event_image['url']); ?>" alt="<?php echo esc_attr($camp_event_image['alt']); ?>"
+              loading="lazy">
           </div>
-        <?php endforeach; ?>
+          <div class="event-card-body">
+            <span class="event-card-tag"><i class="fas fa-campground"></i> 毎年9月開催</span>
+            <h3 class="event-card-title">キャンプイベント</h3>
+            <p class="event-card-text"><?php echo nl2br(esc_html($camp_event_text)); ?></p>
+          </div>
+        </div>
+        <div class="event-card animate-on-scroll">
+          <div class="event-card-img">
+            <img src="<?php echo esc_url($touring_event_image['url']); ?>" alt="<?php echo esc_attr($touring_event_image['alt']); ?>"
+              loading="lazy">
+          </div>
+          <div class="event-card-body">
+            <span class="event-card-tag"><i class="fas fa-road"></i> 定期開催</span>
+            <h3 class="event-card-title">ツーリングイベント</h3>
+            <p class="event-card-text"><?php echo nl2br(esc_html($touring_event_text)); ?></p>
+          </div>
+        </div>
       </div>
 
       <div class="event-sns-cta animate-on-scroll">
